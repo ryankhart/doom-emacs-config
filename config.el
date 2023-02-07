@@ -35,6 +35,7 @@
 ;; ~/Dropbox/org/
 ;;  ├── archive.org
 ;;  ├── refile.org  ;; <- your inbox
+;;  ├── todo.org
 ;;  ├── personal.org
 ;;      ├── journal
 ;;      ├── habits
