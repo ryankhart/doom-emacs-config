@@ -56,3 +56,9 @@
 
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+
+;; TODO: Doesn't seem to work
+;; (package! palette
+;;   :recipe (:host github
+;;            :repo "emacsmirror/emacswiki.org"
+;;            :files ("palette.el" "hexrgb.el")))
