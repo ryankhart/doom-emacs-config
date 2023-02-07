@@ -59,6 +59,7 @@
 ;;  ├── tools.org
 
 (setq display-line-numbers-type `relative)
+(setq display-line-numbers-width 3)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
