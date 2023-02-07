@@ -61,6 +61,9 @@
 (setq display-line-numbers-type `relative)
 (setq display-line-numbers-width 3)
 
+;; Set minimum line padding between cursor and top and bottom of window
+(setq scroll-margin 10)
+
 ;; Set up highlighting matching parentheses
 (show-paren-mode 1)
 (setq show-paren-delay 0)
