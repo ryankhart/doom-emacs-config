@@ -67,11 +67,11 @@
 
 ;; Customize parentheses highlighting to be more visible
 (set-face-attribute 'show-paren-match nil
-                    :foreground "#ffffff"
+                    :foreground "#000000"
                     :weight 'extra-bold)
 
 ;; Set the show-paren-match background color to be bright orange
-(set-face-background 'show-paren-match "#dd5500")
+(set-face-background 'show-paren-match "#ffffff")
 
 ;; Fullscreen mode on startup
 (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
