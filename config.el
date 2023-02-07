@@ -31,8 +31,33 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/org/")
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
+;; Org-mode recommended file structure:
+;; ~/Dropbox/org/
+;;  ├── archive.org
+;;  ├── refile.org  ;; <- your inbox
+;;  ├── personal.org
+;;      ├── journal
+;;      ├── habits
+;;      ├── finance
+;;      ├── health
+;;      ├── home
+;;      ├── travel
+;;      ├── wishlist
+;;      ├── ideas
+;;      ├── recipes
+;;  ├── content.org
+;;    ├── reading
+;;    ├── movies
+;;    ├── music
+;;    ├── podcasts
+;;    ├── videos
+;;    ├── games
+;;    ├── software
+;;    ├── tools
+;;    ├── tv
+;;  ├── notes.org
+;;  ├── tools.org
+
 (setq display-line-numbers-type `relative)
 
 
