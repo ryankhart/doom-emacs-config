@@ -61,6 +61,16 @@
 (setq display-line-numbers-type `relative)
 (setq display-line-numbers-width 3)
 
+;; Set up highlighting matching parentheses
+(show-paren-mode 1)
+(setq show-paren-delay 0)
+
+;; Customize parentheses highlighting to be more visible
+(set-face-attribute 'show-paren-match nil
+                    :foreground "#ffffff"
+                    :weight 'extra-bold)
+
+(add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
