@@ -73,6 +73,7 @@
 ;; Set the show-paren-match background color to be bright orange
 (set-face-background 'show-paren-match "#dd5500")
 
+;; Fullscreen mode on startup
 (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
