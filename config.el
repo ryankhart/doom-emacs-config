@@ -69,6 +69,9 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
+;; Enable indentation guides (vertical lines to show indentation)
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+
 ;; Customize parentheses highlighting to be more visible
 (set-face-attribute 'show-paren-match nil
                     :foreground "#000000"
