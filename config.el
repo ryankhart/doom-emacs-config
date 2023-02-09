@@ -72,25 +72,23 @@
 ;; Configure fonts
 (set-face-attribute 'default nil :font "Monaco 16")
 
-;; Set minimum line padding between cursor and top and bottom of window
-(setq scroll-margin 10)
+(defun my/define-scroll-margins (&rest _args)
+  "Set the scroll margins dynamically based on the current window height."
+  (interactive)
+  ;; if the window is too small, don't add any margins
+  (let ((minimum-window-height 14))
+    ;; Percent margin per top/bottom for windows larger than minimum-window-height
+    (let ((percent-margin 0.1))
 
-;; Set up highlighting matching parentheses
-(show-paren-mode 1)
-(setq show-paren-delay 0)
+      (with-demoted-errors
+          (let ((computed-margin
+                 (if (<= (window-body-height) minimum-window-height)
+                     0
+                   (floor (* (window-body-height) (/ percent-margin) 2) ))))
+            (setq
+             scroll-margin computed-margin))))))
 
-;; Enable indentation guides (vertical lines to show indentation)
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-
-;; Customize parentheses highlighting to be more visible
-(set-face-attribute 'show-paren-match nil
-                    :foreground "#000000"
-                    :weight 'extra-bold)
-
-;; Set the show-paren-match background color to be bright orange
-(set-face-background 'show-paren-match "#ffffff")
-; Enable pixel scrolling for MacOS trackpad
-(setq mac-mouse-wheel-smooth-scroll 't)
+  (add-hook 'post-command-hook #'my/define-scroll-margins)
 
 ;; Display time in the mode line
   (display-time-mode 1)
