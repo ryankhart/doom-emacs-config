@@ -62,6 +62,9 @@
 (setq display-line-numbers-type `relative)
 (setq display-line-numbers-width 3)
 
+;; Configure fonts
+(set-face-attribute 'default nil :font "Monaco 16")
+
 ;; Set minimum line padding between cursor and top and bottom of window
 (setq scroll-margin 10)
 
