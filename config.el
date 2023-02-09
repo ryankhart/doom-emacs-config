@@ -30,6 +30,10 @@
 ;; Make evil-mode h and l wrap around lines
 (setq evil-cross-lines t)
 
+;; Brighten the comments font color
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic :foreground "#5B6268"))
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/org/")
