@@ -95,6 +95,9 @@
 ;; (add-hook 'window-setup-hook #'toggle-frame-maximized)
 ;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;; Use idle-highlight-mode in every buffer
+(add-hook 'prog-mode-hook #'idle-highlight-mode)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
