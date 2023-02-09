@@ -108,10 +108,10 @@
             (setq
              scroll-margin computed-margin))))))
 
-  (add-hook 'post-command-hook #'my/define-scroll-margins)
+(add-hook 'post-command-hook #'my/define-scroll-margins)
 
 ;; Display time in the mode line
-  (display-time-mode 1)
+(display-time-mode 1)
 
 ;; Fullscreen mode on startup
 ;; Each method has slightly different effects that vary from OS to OS. You’ll
