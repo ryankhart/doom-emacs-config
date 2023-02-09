@@ -62,3 +62,11 @@
 ;;   :recipe (:host github
 ;;            :repo "emacsmirror/emacswiki.org"
 ;;            :files ("palette.el" "hexrgb.el")))
+
+(package! idle-highlight-mode
+        ;; You must have (global-hi-lock-mode 1) enabled in your emacs config to make it work.
+        ;; It takes the default highlight face Emacs comes with or your custom highlight face.
+        ;; If you want to make it special in this case, you might modify the
+        ;; idle-highlight-word-at-point function from the package
+        :recipe (:host github :repo "nonsequitur/idle-highlight-mode"
+                       :files ("idle-highlight-mode.el")))
