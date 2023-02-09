@@ -83,7 +83,11 @@
   (display-time-mode 1)
 
 ;; Fullscreen mode on startup
+;; Each method has slightly different effects that vary from OS to OS. You’ll
+;; have to decide for yourself which you prefer.
 (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
+;; (add-hook 'window-setup-hook #'toggle-frame-maximized)
+;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
