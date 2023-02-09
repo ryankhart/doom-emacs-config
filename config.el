@@ -69,6 +69,11 @@
 (setq display-line-numbers-type `relative)
 (setq display-line-numbers-width 3)
 
+;; Ensure that any automatic changes to config get saved in separate file
+(setq-default custom-file (expand-file-name "custom.el" doom-user-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;; Configure fonts
 (set-face-attribute 'default nil :font "Monaco 16")
 
