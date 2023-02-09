@@ -79,6 +79,9 @@
 ; Enable pixel scrolling for MacOS trackpad
 (setq mac-mouse-wheel-smooth-scroll 't)
 
+;; Display time in the mode line
+  (display-time-mode 1)
+
 ;; Fullscreen mode on startup
 (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 
