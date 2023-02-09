@@ -76,6 +76,8 @@
 
 ;; Set the show-paren-match background color to be bright orange
 (set-face-background 'show-paren-match "#ffffff")
+; Enable pixel scrolling for MacOS trackpad
+(setq mac-mouse-wheel-smooth-scroll 't)
 
 ;; Fullscreen mode on startup
 (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
