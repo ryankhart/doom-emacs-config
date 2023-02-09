@@ -57,12 +57,6 @@
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
-;; TODO: Doesn't seem to work
-;; (package! palette
-;;   :recipe (:host github
-;;            :repo "emacsmirror/emacswiki.org"
-;;            :files ("palette.el" "hexrgb.el")))
-
 (package! idle-highlight-mode
         ;; You must have (global-hi-lock-mode 1) enabled in your emacs config to make it work.
         ;; It takes the default highlight face Emacs comes with or your custom highlight face.
