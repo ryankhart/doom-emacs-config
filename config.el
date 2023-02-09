@@ -123,10 +123,7 @@
 ;; Use idle-highlight-mode in every buffer
 (add-hook 'prog-mode-hook #'idle-highlight-mode)
 
-
 ;; Add keymap for Command-/ to toggle a comment line and also move the cursor down one line
-;; This is a workaround for the fact that the default keymap for Command-/ is to toggle a comment
-;; block, which is not what I want
 (map! :desc "Toggle comment line and move down one line"
       :n "s-/" #'my/comment-line-and-move-down)
 
