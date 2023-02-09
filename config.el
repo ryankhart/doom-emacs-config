@@ -38,6 +38,21 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/org/")
 
+;; Set up org-mode to use the agenda files in the org directory
+(setq org-agenda-files (list "~/Dropbox/org/agenda/"))
+
+;; Set up org-mode to use the refile.org file as the inbox
+(setq org-default-notes-file "~/Dropbox/org/refile.org")
+
+;; Set up org-mode to use the todo.org file as the todo list
+(setq org-todo-file "~/Dropbox/org/todo.org")
+
+;; Set up org-mode to use the archive.org file as the archive
+(setq org-archive-file "~/Dropbox/org/archive.org")
+
+;; Set up org-mode to use the personal.org file as the personal file
+(setq org-personal-file "~/Dropbox/org/personal.org")
+
 ;; Org-mode recommended file structure:
 ;; ~/Dropbox/org/
 ;;  ├── archive.org
