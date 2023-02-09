@@ -149,6 +149,9 @@
 ;; they are implemented.
 
 (use-package! org-pandoc-import :after org)
+(use-package! company-box
+  :hook (company-mode . company-box-mode))
+
 
 ;; accept completion from copilot and fallback to company
 (use-package! copilot

@@ -64,3 +64,8 @@
         ;; idle-highlight-word-at-point function from the package
         :recipe (:host github :repo "nonsequitur/idle-highlight-mode"
                        :files ("idle-highlight-mode.el")))
+
+(package! company-box
+  :recipe (:host github :repo "sebastiencs/company-box"))
+
+;; TODO: install https://github.com/emacs-evil/evil-cleverparens
