@@ -105,6 +105,17 @@
 ;; Use idle-highlight-mode in every buffer
 (add-hook 'prog-mode-hook #'idle-highlight-mode)
 
+
+;; Add keymap for Command-/ to toggle a comment line and also move the cursor down one line
+;; This is a workaround for the fact that the default keymap for Command-/ is to toggle a comment
+;; block, which is not what I want
+(map! :desc "Toggle comment line and move down one line"
+      :n "s-/" #'my/comment-line-and-move-down)
+
+(defun my/comment-line-and-move-down ()
+  (interactive)
+  (comment-line 1))
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
