@@ -161,9 +161,9 @@
   (comment-line 1))
 
 (use-package! org-pandoc-import :after org)
-(use-package! company-box
-  :hook (company-mode . company-box-mode))
 
+(use-package! company-box
+  :hook (company-mode . company-box-mode)) ; When using company-mode, enable company-box-mode
 
 
 ;; Disable TAB and <tab> keymaps for company-mode
