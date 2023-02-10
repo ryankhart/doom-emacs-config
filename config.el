@@ -202,3 +202,10 @@
 ;; Disable git style convention checks' overlong summary line warning but keep red font in magit
 ;; Default options are: (non-empty-second-line overlong-summary-line)
 (setq git-commit-style-convention-checks '(non-empty-second-line))
+
+;; Enable command-log-mode
+(use-package! command-log-mode
+  :defer
+  :config
+  (global-command-log-mode 1)
+  (setq command-log-mode-auto-show t))
