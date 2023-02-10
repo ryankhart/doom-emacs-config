@@ -114,6 +114,10 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
+;; Enable indentation guides (vertical lines to show indentation)
+;; for all programming modes
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+
 ;; Display time in the mode line
 (display-time-mode 1)
 
