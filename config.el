@@ -198,3 +198,7 @@
 
 (map! :n "s-h" #'evil-first-non-blank-of-visual-line
       :n "s-l" #'evil-end-of-visual-line)
+
+;; Disable git style convention checks' overlong summary line warning but keep red font in magit
+;; Default options are: (non-empty-second-line overlong-summary-line)
+(setq git-commit-style-convention-checks '(non-empty-second-line))
