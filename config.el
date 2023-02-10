@@ -176,11 +176,12 @@
 
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion))
-  ;; Enable childframe option in company module ((company +childframe)) to prevent overlay conflict
-        :config (setq copilot-company-completion-backend 'company-childframe))
+  :hook (prog-mode . copilot-mode) ; enable copilot in all programming modes
+  ;; :bind* overrides all minor mode bindings (unlike :bind)
+  :bind* (:map copilot-completion-map
+               ;; Emacs usually translates <tab> to TAB, but we map both just
+               ;; in case one of them was bound to different commands on the global-map
+               ("C-TAB" . 'copilot-accept-completion-by-word)
+               ("C-<tab>" . 'copilot-accept-completion-by-word)
+               ("<tab>" . 'copilot-accept-completion)
+               ("TAB" . 'copilot-accept-completion)))
