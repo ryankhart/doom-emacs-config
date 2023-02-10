@@ -118,6 +118,9 @@
 ;; for all programming modes
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
+;; Enable pixel scrolling for MacOS trackpad
+(setq mac-mouse-wheel-smooth-scroll 't)
+
 ;; Display time in the mode line
 (display-time-mode 1)
 
