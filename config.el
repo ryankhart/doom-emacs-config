@@ -188,3 +188,10 @@
   (interactive)
     (or (copilot-accept-completion)
         (or (company-indent-or-complete-common nil) (indent-for-tab-command))))
+
+(use-package! iedit
+  :defer
+  :config
+  (set-face-background 'iedit-occurrence "white")
+  :bind
+  ("C-;" . iedit-mode))
