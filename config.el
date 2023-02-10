@@ -170,9 +170,7 @@
 (map! :after company
       :map company-active-map
       "TAB" nil
-      "<tab>" nil
-      "C-n" #'company-select-next
-      "C-p" #'company-select-previous)
+      "<tab>" nil)
 
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
