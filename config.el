@@ -81,6 +81,7 @@
 ;;  ├── notes.org
 ;;  ├── tools.org
 
+(setq display-line-numbers-mode t)
 (setq display-line-numbers-type `relative)
 (setq display-line-numbers-width 3)
 
