@@ -209,3 +209,7 @@
   :config
   (global-command-log-mode 1)
   (setq command-log-mode-auto-show t))
+
+(map! :leader
+      :prefix ("w" . "window")
+      :n "o" #'delete-other-windows)
