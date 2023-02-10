@@ -49,6 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+;; TODO: install https://github.com/emacs-evil/evil-cleverparens
+
 (package! org-pandoc-import
   :recipe (:host github
            :repo "tecosaur/org-pandoc-import"
@@ -68,4 +70,10 @@
 (package! company-box
   :recipe (:host github :repo "sebastiencs/company-box"))
 
-;; TODO: install https://github.com/emacs-evil/evil-cleverparens
+(package! iedit)
+
+;; (package! keycast
+;;   :recipe (:host github :repo "tarsius/keycast"))
+
+(package! command-log-mode
+  :recipe (:host github :repo "lewang/command-log-mode"))
