@@ -185,3 +185,8 @@
                ("C-<tab>" . 'copilot-accept-completion-by-word)
                ("<tab>" . 'copilot-accept-completion)
                ("TAB" . 'copilot-accept-completion)))
+
+(defun my/completion-tab ()
+  (interactive)
+    (or (copilot-accept-completion)
+        (or (company-indent-or-complete-common nil) (indent-for-tab-command))))
