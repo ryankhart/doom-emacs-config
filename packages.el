@@ -77,3 +77,5 @@
 
 (package! command-log-mode
   :recipe (:host github :repo "lewang/command-log-mode"))
+
+(package! dash-at-point)
