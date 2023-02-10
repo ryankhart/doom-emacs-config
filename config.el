@@ -195,3 +195,6 @@
   (set-face-background 'iedit-occurrence "white")
   :bind
   ("C-;" . iedit-mode))
+
+(map! :n "s-h" #'evil-first-non-blank-of-visual-line
+      :n "s-l" #'evil-end-of-visual-line)
