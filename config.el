@@ -110,6 +110,10 @@
 
 (add-hook 'post-command-hook #'my/define-scroll-margins)
 
+;; Set up highlighting matching parentheses
+(show-paren-mode 1)
+(setq show-paren-delay 0)
+
 ;; Display time in the mode line
 (display-time-mode 1)
 
