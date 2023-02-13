@@ -136,10 +136,8 @@
 ;; Enable pixel scrolling for MacOS trackpad
 (setq mac-mouse-wheel-smooth-scroll 't)
 
-;; Display time in the mode line
+;; Mode line settings
 (display-time-mode 1)
-
-;; Display battery mode
 (display-battery-mode 1)
 
 ;; Fullscreen mode on startup
