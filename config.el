@@ -213,3 +213,7 @@
 (map! :leader :prefix ("w" . "window") :n "C-j" nil)
 (map! :leader :prefix ("w" . "window") :n "q" nil)
 (map! :leader :prefix ("w" . "window") :n "R" nil)
+
+;; Turn off Emacs quit confirmation
+;; I get enough quit confirmation prompts from unsaved files
+(setq confirm-kill-emacs nil)
