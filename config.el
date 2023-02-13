@@ -217,3 +217,6 @@
 ;; Turn off Emacs quit confirmation
 ;; I get enough quit confirmation prompts from unsaved files
 (setq confirm-kill-emacs nil)
+
+;; Map Command + s to save file (assuming Super key is mapped to Command key)
+(map! "s-s" #'save-buffer)
