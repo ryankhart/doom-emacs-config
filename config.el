@@ -170,22 +170,17 @@
       "TAB" nil
       "<tab>" nil)
 
-;; accept completion from copilot and fallback to company
 (use-package! copilot
-  :hook (prog-mode . copilot-mode) ; enable copilot in all programming modes
-  ;; :bind* overrides all minor mode bindings (unlike :bind)
-  :bind* (:map copilot-completion-map
-               ;; Emacs usually translates <tab> to TAB, but we map both just
-               ;; in case one of them was bound to different commands on the global-map
-               ("C-TAB" . 'copilot-accept-completion-by-word)
-               ("C-<tab>" . 'copilot-accept-completion-by-word)
-               ("<tab>" . 'copilot-accept-completion)
-               ("TAB" . 'copilot-accept-completion)))
-
-(defun my/completion-tab ()
-  (interactive)
-    (or (copilot-accept-completion)
-        (or (company-indent-or-complete-common nil) (indent-for-tab-command))))
+  :hook (prog-mode . copilot-mode)
+  :bind* (("<backtab>" . 'copilot-accept-completion-by-word)
+          :map copilot-completion-map
+          ("<tab>" . 'copilot-accept-completion)
+          ("TAB" . 'copilot-accept-completion))
+  :config
+  ;; Upon entering copilot mode, disable smartparens-mode as it is incompatible
+  (add-hook 'copilot-mode-hook #'turn-off-smartparens-mode)
+  ;; Only enable copilot in insert mode and immediately after entering insert mode
+  (setq copilot-enable-predicates '(evil-insert-state-p)))
 
 (use-package! iedit
   :defer
