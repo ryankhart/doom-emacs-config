@@ -232,3 +232,24 @@
 (map! :leader
       :prefix ("w" . "window")
       :n "r" #'hydra/evil-window-resize/body)
+
+;; Make evil-delete-whole-line delete whole line except for any unmatched
+;; closing parentheses and move all closing parentheses at the end of the
+;; current line to the end of the previous line
+(defun my/evil-delete-whole-line ()
+  (interactive)
+  (let ((line (thing-at-point 'line)))
+    (evil-delete-whole-line (point-at-bol) (point-at-eol))
+    ;; Count the number of unmatched closing parentheses at the end of the line
+    ;; TODO: Fix bug where "(" or ")" inside a string is counted when it shouldn't.
+    (let ((unmatched-closing-parentheses-count
+           (- (length (split-string line ")")) (length (split-string line "(")))))
+      ;; If there are unmatched closing parentheses, move them to the end of the
+      ;; previous line and move the cursor to the end of the previous line
+      ;; Otherwise, move the cursor to the beginning of the current line
+      (if (> unmatched-closing-parentheses-count 0)
+          (progn
+            (evil-previous-line)
+            (end-of-line)
+            (insert (s-repeat unmatched-closing-parentheses-count ")")))
+        (beginning-of-line)))))
