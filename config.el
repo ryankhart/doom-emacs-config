@@ -221,14 +221,16 @@
 ;; Map Command + s to save file (assuming Super key is mapped to Command key)
 (map! "s-s" #'save-buffer)
 
-(defhydra hydra/evil-window-resize (:color red)
-  "Resize window"
-  ("h" evil-window-decrease-width "decrease width")
-  ("j" evil-window-decrease-height "decrease height")
-  ("k" evil-window-increase-height "increase height")
-  ("l" evil-window-increase-width "increase width")
-  ("q" nil "quit"))
-
+(use-package! hydra
+  :defer
+  :config
+  (defhydra hydra/evil-window-resize (:color red)
+    "Resize window"
+    ("h" evil-window-decrease-width "decrease width")
+    ("j" evil-window-decrease-height "decrease height")
+    ("k" evil-window-increase-height "increase height")
+    ("l" evil-window-increase-width "increase width")
+    ("q" nil "quit")))
 (map! :leader
       :prefix ("w" . "window")
       :n "r" #'hydra/evil-window-resize/body)
