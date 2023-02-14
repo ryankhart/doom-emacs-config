@@ -20,9 +20,6 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Ryan Hart"
-      user-mail-address "ryankhart@gmail.com")
-
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -39,6 +36,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+(load! "private")
+
 (setq doom-theme 'doom-one)
 
 ;; Make evil-mode h and l wrap around lines
