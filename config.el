@@ -237,10 +237,10 @@
    :desc "window resize" :n "w r" #'hydra/evil-window-resize/body
    :desc "window move" :n "w m" #'hydra/evil-window-move/body))
 
-;; Make evil-delete-whole-line delete whole line except for any unmatched
-;; closing parentheses and move all closing parentheses at the end of the
-;; current line to the end of the previous line
 (defun my/evil-delete-whole-line ()
+  "Delete whole line except for any unmatched closing parentheses and move all
+unmatched closing parentheses at the end of the current line to the end of the
+previous line."
   (interactive)
   (let ((line (thing-at-point 'line)))
     (evil-delete-whole-line (point-at-bol) (point-at-eol))
@@ -257,8 +257,21 @@
             (end-of-line)
             (insert (s-repeat unmatched-closing-parentheses-count ")")))
         (beginning-of-line)))))
+
+;; TODO: Map dd to my/evil-delete-whole-line
+;; The following code doesn't work because it doesn't allow for the d command to
+;; work on its own.
+;; (defun doom-auto-reload-config_file_hook ()
+;;   "Automatically reload the config file when it changes."
+;;   (when (string= (file-name-nondirectory (buffer-file-name)) "config.el")
+;;         (doom/reload)
+;;         (evil-window-prev 1)))
+;; (add-hook 'find-file-hook 'doom-auto-reload-config_file_hook)
+
 (setq-default fill-column 80)
 (turn-on-auto-fill)
+
+;; TODO: Make Emacs K search append "emacs" to search query
 
 (defcustom flycheck-elisp-noflycheck-marker ";noflycheck"
   "Flycheck line regions marked with this comment are ignored."
@@ -281,3 +294,4 @@
 ;; the lagging behind typing cursor.
 ;; (good-scroll-mode 1)
 
+;; TODO: Make flycheck-list-errors switch focus to the error buffer
