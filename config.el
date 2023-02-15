@@ -174,9 +174,7 @@
           ("TAB" . 'copilot-accept-completion))
   :config
   ;; Upon entering copilot mode, disable smartparens-mode as it is incompatible
-  (add-hook 'copilot-mode-hook #'turn-off-smartparens-mode)
-  ;; Only enable copilot in insert mode and immediately after entering insert mode
-  (setq copilot-enable-predicates '(evil-insert-state-p)))
+  (add-hook 'copilot-mode-hook #'turn-off-smartparens-mode))
 
 (use-package! iedit
   :defer
