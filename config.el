@@ -110,21 +110,21 @@
 ;; Configure fonts
 (set-face-attribute 'default nil :font "Monaco 16")
 
-(defun my/define-scroll-margins (&rest _args)
+;; TODO: Extract minimum-window-height and percent-margin into defcustom
+;; variables.
+(defun my/define-scroll-margins ()
   "Set the scroll margins dynamically based on the current window height."
-  (interactive)
   ;; if the window is too small, don't add any margins
   (let ((minimum-window-height 14))
     ;; Percent margin per top/bottom for windows larger than
     ;; minimum-window-height
     (let ((percent-margin 0.1))
-      (with-demoted-errors
-          (let ((computed-margin
-                 (if (<= (window-body-height) minimum-window-height)
-                     0
-                   (floor (* (window-body-height) (/ percent-margin) 2) ))))
-            (setq scroll-margin computed-margin))))))
-(add-hook 'post-command-hook #'my/define-scroll-margins)
+      (let ((computed-margin
+        (if (<= (window-body-height) minimum-window-height)
+            0
+          (floor (* (window-body-height) (/ percent-margin) 2)))))
+        (setq scroll-margin computed-margin)))))
+(add-hook 'window-configuration-change-hook #'my/define-scroll-margins)
 
 ;; Set up highlighting matching parentheses
 (show-paren-mode 1)
