@@ -188,9 +188,7 @@
 (use-package! command-log-mode
   :defer
   :config
-  (global-command-log-mode 1)
-  (setq command-log-mode-auto-show t))
-
+  (command-log-mode 1))
 
 
 
