@@ -243,7 +243,7 @@ unmatched closing parentheses at the end of the current line to the end of the
 previous line."
   (interactive)
   (let ((line (thing-at-point 'line)))
-    (evil-delete-whole-line (point-at-bol) (point-at-eol))
+    (evil-delete-whole-line (line-beginning-position) (line-end-position))
     ;; Count the number of unmatched closing parentheses at the end of the line
     ;; TODO: Fix bug where "(" or ")" inside a string is counted when it shouldn't.
     (let ((unmatched-closing-parentheses-count
