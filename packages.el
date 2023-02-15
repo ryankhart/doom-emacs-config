@@ -60,12 +60,12 @@
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
 (package! idle-highlight-mode
-        ;; You must have (global-hi-lock-mode 1) enabled in your emacs config to make it work.
-        ;; It takes the default highlight face Emacs comes with or your custom highlight face.
-        ;; If you want to make it special in this case, you might modify the
-        ;; idle-highlight-word-at-point function from the package
-        :recipe (:host github :repo "nonsequitur/idle-highlight-mode"
-                       :files ("idle-highlight-mode.el")))
+  ;; You must have (global-hi-lock-mode 1) enabled in your emacs config to make it work.
+  ;; It takes the default highlight face Emacs comes with or your custom highlight face.
+  ;; If you want to make it special in this case, you might modify the
+  ;; idle-highlight-word-at-point function from the package
+  :recipe (:host github :repo "nonsequitur/idle-highlight-mode"
+           :files ("idle-highlight-mode.el")))
 
 (package! company-box
   :recipe (:host github :repo "sebastiencs/company-box"))
