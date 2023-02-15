@@ -156,14 +156,8 @@
 (use-package! org-pandoc-import :after org)
 
 (use-package! company-box
-  :hook (company-mode . company-box-mode)) ; When using company-mode, enable company-box-mode
-
-
-;; Disable TAB and <tab> keymaps for company-mode
-(map! :after company
-      :map company-active-map
-      "TAB" nil
-      "<tab>" nil)
+  ;; When using company-mode, enable company-box-mode
+  :hook (company-mode . company-box-mode))
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
