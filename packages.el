@@ -82,3 +82,4 @@
 (package! hydra
   :recipe (:host github :repo "abo-abo/hydra"))
 
+(unpin! org)
