@@ -197,16 +197,7 @@
   (global-command-log-mode 1)
   (setq command-log-mode-auto-show t))
 
-(map! :leader
-      :prefix ("w" . "window")
-      :n "o" #'delete-other-windows)
 
-(map! :leader :prefix ("w" . "window") :n "C-h" nil)
-(map! :leader :prefix ("w" . "window") :n "C-l" nil)
-(map! :leader :prefix ("w" . "window") :n "C-k" nil)
-(map! :leader :prefix ("w" . "window") :n "C-j" nil)
-(map! :leader :prefix ("w" . "window") :n "q" nil)
-(map! :leader :prefix ("w" . "window") :n "R" nil)
 
 
 ;; Map Command + s to save file (assuming Super key is mapped to Command key)
