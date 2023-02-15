@@ -190,6 +190,12 @@
   :config
   (command-log-mode 1))
 
+;; If buffer can be formatted...
+(if (fboundp 'format-all-mode)
+    ;; ...enable format-all-mode to auto format on save
+    ;; so that you don't get message from format-all-mode
+    ;; when it is not available
+    (add-hook 'prog-mode-hook #'format-all-mode))
 
 
 ;; Map Command + s to save file (assuming Super key is mapped to Command key)
