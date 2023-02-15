@@ -197,9 +197,17 @@
     ;; when it is not available
     (add-hook 'prog-mode-hook #'format-all-mode))
 
+(defun my/save-buffer ()
+  (interactive)
+  (if (buffer-modified-p)
+      (save-buffer)
+    (message "File is already saved")))
+(map! :desc "Save File"
+      "s-s" #'my/save-buffer)
+(map! :leader
+      :desc "Save File"
+      :n "f s" #'my/save-buffer)
 
-;; Map Command + s to save file (assuming Super key is mapped to Command key)
-(map! "s-s" #'save-buffer)
 
 (use-package! hydra
   :defer
