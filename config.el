@@ -259,3 +259,19 @@
 (setq-default fill-column 80)
 (turn-on-auto-fill)
 
+(defcustom flycheck-elisp-noflycheck-marker ";noflycheck"
+  "Flycheck line regions marked with this comment are ignored."
+  :type 'string
+  :group 'flycheck)
+(defun flycheck-elisp-noflycheck (err)
+  "Ignore flycheck if line of ERR ends with (flycheck-elisp-noflycheck-marker)."
+  (save-excursion
+    (goto-char (cdr (flycheck-error-region-for-mode err 'symbols)))
+    (looking-back flycheck-elisp-noflycheck-marker
+                  (max (- (point) (length flycheck-elisp-noflycheck-marker))
+                       (point-min)))))
+(defun elisp-noflycheck-hook ()
+  "Add the ;;;###noflycheck thing to elisp."
+  (require 'flycheck)
+  (add-hook 'flycheck-process-error-functions #'flycheck-elisp-noflycheck nil t))
+(add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
