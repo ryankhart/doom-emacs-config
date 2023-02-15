@@ -135,6 +135,7 @@
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
 ;; Enable pixel scrolling for MacOS trackpad
+;; (only works in GUI for emacs-mac build)
 (setq mac-mouse-wheel-smooth-scroll 't)
 
 ;; Mode line settings
@@ -275,3 +276,8 @@
   (require 'flycheck)
   (add-hook 'flycheck-process-error-functions #'flycheck-elisp-noflycheck nil t))
 (add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
+
+;; TODO: Before enabling this, fix bug where smooth-scrolling is caught on
+;; the lagging behind typing cursor.
+;; (good-scroll-mode 1)
+

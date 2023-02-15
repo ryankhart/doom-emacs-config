@@ -82,4 +82,7 @@
 (package! hydra
   :recipe (:host github :repo "abo-abo/hydra"))
 
+(package! good-scroll
+  :recipe (:host github :repo "io12/good-scroll.el"))
+
 (unpin! org)
