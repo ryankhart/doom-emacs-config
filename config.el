@@ -7,6 +7,12 @@
 ;; Make evil-mode h and l wrap around lines
 (setq evil-cross-lines t)
 
+;; Make Emacs act like a proper editor
+(setq debug-on-error t)
+
+;; Set the default tab size to 2 spaces
+(setq-default tab-width 2)
+
 ;; Turn off Emacs quit confirmation
 ;; I get enough quit confirmation prompts from unsaved files
 (setq confirm-kill-emacs nil)
