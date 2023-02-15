@@ -271,6 +271,11 @@ previous line."
 (setq-default fill-column 80)
 (turn-on-auto-fill)
 
+;; Allows which-key to expand taller with less need for multiple pages.
+(which-key-setup-minibuffer)
+;; Set which-key max height by percent of screen (default is 1.0)
+(setq max-mini-window-height 0.5) ; 50% of screen height
+
 ;; TODO: Make Emacs K search append "emacs" to search query
 
 (defcustom flycheck-elisp-noflycheck-marker ";noflycheck"
