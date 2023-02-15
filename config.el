@@ -256,3 +256,6 @@
             (end-of-line)
             (insert (s-repeat unmatched-closing-parentheses-count ")")))
         (beginning-of-line)))))
+(setq-default fill-column 80)
+(turn-on-auto-fill)
+
