@@ -7,6 +7,10 @@
 ;; Make evil-mode h and l wrap around lines
 (setq evil-cross-lines t)
 
+;; Turn off Emacs quit confirmation
+;; I get enough quit confirmation prompts from unsaved files
+(setq confirm-kill-emacs nil)
+
 ;; Brighten the comments font color
 (custom-set-faces!
   '(font-lock-comment-face :slant italic :foreground "#5B6268"))
@@ -177,9 +181,6 @@
 (map! :leader :prefix ("w" . "window") :n "q" nil)
 (map! :leader :prefix ("w" . "window") :n "R" nil)
 
-;; Turn off Emacs quit confirmation
-;; I get enough quit confirmation prompts from unsaved files
-(setq confirm-kill-emacs nil)
 
 ;; Map Command + s to save file (assuming Super key is mapped to Command key)
 (map! "s-s" #'save-buffer)
