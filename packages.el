@@ -79,3 +79,6 @@
   :recipe (:host github :repo "lewang/command-log-mode"))
 
 (package! dash-at-point)
+(package! hydra
+  :recipe (:host github :repo "abo-abo/hydra"))
+

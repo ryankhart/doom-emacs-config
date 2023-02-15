@@ -214,20 +214,27 @@
       :desc "Save File"
       :n "f s" #'my/save-buffer)
 
-
 (use-package! hydra
   :defer
   :config
-  (defhydra hydra/evil-window-resize (:color red)
+  (defhydra hydra/evil-window-resize (:color blue)
     "Resize window"
     ("h" evil-window-decrease-width "decrease width")
     ("j" evil-window-decrease-height "decrease height")
     ("k" evil-window-increase-height "increase height")
     ("l" evil-window-increase-width "increase width")
-    ("q" nil "quit")))
-(map! :leader
-      :prefix ("w" . "window")
-      :n "r" #'hydra/evil-window-resize/body)
+    ("q" nil "quit" :color red))
+  (defhydra hydra/evil-window-move (:color blue)
+    "Move window"
+    ("h" evil-window-move-far-left "move far left")
+    ("j" evil-window-move-very-bottom "move very bottom")
+    ("k" evil-window-move-very-top "move very top")
+    ("l" evil-window-move-far-right "move far right")
+    ("q" nil "quit" :color red))
+  (map!
+   :leader
+   :desc "window resize" :n "w r" #'hydra/evil-window-resize/body
+   :desc "window move" :n "w m" #'hydra/evil-window-move/body))
 
 ;; Make evil-delete-whole-line delete whole line except for any unmatched
 ;; closing parentheses and move all closing parentheses at the end of the
