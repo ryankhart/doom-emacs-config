@@ -15,6 +15,40 @@
 (custom-set-faces!
   '(font-lock-comment-face :slant italic :foreground "#5B6268"))
 
+(map!
+ :leader
+ :n "w C-h" nil
+ :n "w C-l" nil
+ :n "w C-k" nil
+ :n "w C-j" nil
+ :n "w q" nil
+ :n "w R" nil
+ :n "w m" nil
+ :n "w o" nil
+ :n "s B" nil
+ )
+
+(map!
+ :i "C-l" nil
+)
+
+(map!
+ :leader
+ :prefix ("w o" . "other windows")
+ :prefix ("m" . "major mode")
+ :prefix ("m e" . "eval")
+ :prefix ("m d" . "debug")
+ :prefix ("m g" . "goto")
+ )
+
+(map!
+ :leader
+ :desc "search all open buffers" :n "s b" #'search-all-open-buffers
+ :desc "delete all other windows" :n "w o o" #'delete-other-windows
+ :desc "delete other windows👈👉" :n "w o s" #'doom/window-maximize-horizontally
+ :desc "delete other windows👇👆" :n "w o v" #'doom/window-maximize-vertically
+ )
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/org/")
