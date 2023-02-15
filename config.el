@@ -29,10 +29,6 @@
  )
 
 (map!
- :i "C-l" nil
-)
-
-(map!
  :leader
  :prefix ("w o" . "other windows")
  :prefix ("m" . "major mode")
@@ -113,17 +109,15 @@
   (interactive)
   ;; if the window is too small, don't add any margins
   (let ((minimum-window-height 14))
-    ;; Percent margin per top/bottom for windows larger than minimum-window-height
+    ;; Percent margin per top/bottom for windows larger than
+    ;; minimum-window-height
     (let ((percent-margin 0.1))
-
       (with-demoted-errors
           (let ((computed-margin
                  (if (<= (window-body-height) minimum-window-height)
                      0
                    (floor (* (window-body-height) (/ percent-margin) 2) ))))
-            (setq
-             scroll-margin computed-margin))))))
-
+            (setq scroll-margin computed-margin))))))
 (add-hook 'post-command-hook #'my/define-scroll-margins)
 
 ;; Set up highlighting matching parentheses
@@ -197,7 +191,6 @@
 ;; Default options are: (non-empty-second-line overlong-summary-line)
 (setq git-commit-style-convention-checks '(non-empty-second-line))
 
-;; Enable command-log-mode
 (use-package! command-log-mode
   :defer
   :config
