@@ -185,6 +185,8 @@
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
+  :hook (text-mode . copilot-mode)
+  :hook (org-mode . copilot-mode)
   :bind* (("<backtab>" . 'copilot-accept-completion-by-word)
           :map copilot-completion-map
           ("<tab>" . 'copilot-accept-completion)
