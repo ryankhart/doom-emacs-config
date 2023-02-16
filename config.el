@@ -171,10 +171,10 @@
   :bind* (("<backtab>" . 'copilot-accept-completion-by-word)
           :map copilot-completion-map
           ("<tab>" . 'copilot-accept-completion)
-          ("TAB" . 'copilot-accept-completion))
-  :config
-  ;; Upon entering copilot mode, disable smartparens-mode as it is incompatible
-  (add-hook 'copilot-mode-hook #'turn-off-smartparens-mode))
+          ("TAB" . 'copilot-accept-completion)
+          :map sp-pair-overlay-keymap
+          ("<tab>" . 'copilot-accept-completion)
+          ("TAB" . 'copilot-accept-completion)))
 
 (use-package! iedit
   :defer
