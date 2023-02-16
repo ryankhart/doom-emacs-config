@@ -31,8 +31,26 @@
  :n "w R" nil
  :n "w m" nil
  :n "w o" nil
+ :n "w C-<left>" nil
+ :n "w C-<right>" nil
+ :n "w C-<up>" nil
+ :n "w C-<down>" nil
+ :n "w <left>" nil
+ :n "w <right>" nil
+ :n "w <up>" nil
+ :n "w <down>" nil
  :n "s B" nil
+ :n "b l" nil
  )
+
+(map!
+ :n "C-x C-;" nil
+ :n "C-x C-g" nil
+ :n "C-x C-s" nil
+ :n "C-x C-w" nil
+ :n "C-x <left>" nil
+ :n "C-x <right>" nil
+)
 
 (map!
  :leader
