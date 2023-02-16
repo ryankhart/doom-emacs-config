@@ -276,6 +276,7 @@ previous line."
 
 ;; TODO: Make Emacs K search append "emacs" to search query
 
+;; https://emacs.stackexchange.com/questions/47878/how-can-i-disable-a-specific-lint-error-for-emacs-lisp-using-flycheck
 (defcustom flycheck-elisp-noflycheck-marker ";noflycheck"
   "Flycheck line regions marked with this comment are ignored."
   :type 'string
