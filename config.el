@@ -80,13 +80,12 @@
   :n "s-<" #'customize-variable)
 
 (setq org-directory             "~/Dropbox/org/")
-;; (setq org-agenda-files          '("~/Dropbox/org/"))
-;; (setq org-default-notes-file    "~/Dropbox/org/notes.org")
-;; (setq org-agenda-files (list    "~/Dropbox/org/agenda/"))
-;; (setq org-default-notes-file    "~/Dropbox/org/refile.org")
-;; (setq org-todo-file             "~/Dropbox/org/todo.org")
-;; (setq org-archive-file          "~/Dropbox/org/archive.org")
-;; (setq org-personal-file         "~/Dropbox/org/personal.org")
+(setq org-default-notes-file    "~/Dropbox/org/refile.org")
+(setq org-capture-templates
+      '(("t" "Todo" entry (file "~/Dropbox/org/refile.org")
+         "* TODO %?\n  %i%a\n")
+        ("n" "Note" entry (file "~/Dropbox/org/refile.org")
+         "* %? :NOTE: \n  %i%a\n")))
 
 (setq display-line-numbers-type 'relative)
 
