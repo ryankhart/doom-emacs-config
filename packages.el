@@ -53,8 +53,8 @@
 
 (package! org-pandoc-import
   :recipe (:host github
-           :repo "tecosaur/org-pandoc-import"
-           :files ("*.el" "filters" "preprocessors")))
+            :repo "tecosaur/org-pandoc-import"
+            :files ("*.el" "filters" "preprocessors")))
 
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
@@ -65,7 +65,7 @@
   ;; If you want to make it special in this case, you might modify the
   ;; idle-highlight-word-at-point function from the package
   :recipe (:host github :repo "nonsequitur/idle-highlight-mode"
-           :files ("idle-highlight-mode.el")))
+            :files ("idle-highlight-mode.el")))
 
 (package! iedit)
 
