@@ -121,6 +121,39 @@
           (floor (* (window-body-height) (* percent-margin 2))))))))
 (add-hook 'window-configuration-change-hook #'my/define-scroll-margins)
 
+(defun my/scroll-up-line (&optional ARG)
+  "Scroll up ARG lines but keep point in the same place relative to the window."
+  (interactive "p")
+  (let ((arg (or ARG 1)))
+    (unless (= (point-min) (window-start))
+      (evil-previous-line arg)
+      (scroll-down arg))))
+
+(defun my/scroll-down-line (&optional ARG)
+  "Scroll up ARG lines but keep point in the same place relative to the window."
+  (interactive "p")
+  (let ((arg (or ARG 1)))
+      (evil-next-line arg)
+      (scroll-up arg)))
+
+(defun my/scroll-left (&optional ARG)
+  "Scroll left ARG columns but keep point in the same place relative to the
+window."
+  (interactive)
+  (let ((ARG (or ARG 1)))
+    (when (> (window-hscroll) 0)
+      (progn
+        (evil-backward-char ARG)
+        (scroll-right ARG)))))
+
+(defun my/scroll-right (&optional ARG)
+  "Scroll right ARG columns but keep point in the same place relative to the
+window."
+  (interactive)
+  (let ((ARG (or ARG 1)))
+    (and (scroll-left ARG)
+      (evil-forward-char ARG))))
+
 (display-time-mode 1)
 (display-battery-mode 1)
 
