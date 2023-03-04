@@ -210,8 +210,29 @@ window."
            ("<backtab>"  . 'copilot-accept-completion-by-word)
            ("M-<tab>"    . 'copilot-accept-completion-by-line)
            ("C-n"        . 'copilot-next-completion)
-           ("C-p"        . 'copilot-previous-completion)
-           ))
+           ("C-p"        . 'copilot-previous-completion)))
+
+;; TODO use add-advice :before to make my custom evil open function work with elisp
+
+(use-package! format-all
+  :config
+  (setq +format-on-save-enabled-modes ; Enable for emacs-lisp-mode
+    (cl-delete 'emacs-lisp-mode +format-on-save-enabled-modes :test #'eq))
+  (add-hook! 'evil-paste-after-hook       #'format-all-buffer)
+  (add-hook! 'yank-hook                   #'format-all-buffer)
+  (defvar evil-paste-after-hook nil
+    "Hook run after pasting.")
+  (defvar yank-hook nil
+    "Hook run after yanking.")
+  (defadvice! evil-paste-after-hook (&rest _)
+    "Run `evil-paste-after-hook' after evil pasting."
+    :after #'evil-paste-after
+    (run-hooks 'evil-paste-after-hook))
+  (defadvice! yank-hook (&rest _)
+    "Run `yank-hook' after Emacs yanking (pasting)."
+    :after #'yank
+    (run-hooks 'yank-hook)))
+
 
 (use-package! iedit
   :defer
