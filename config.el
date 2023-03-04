@@ -87,6 +87,21 @@
         ("n" "Note" entry (file "~/Dropbox/org/refile.org")
          "* %? :NOTE: \n  %i%a\n")))
 
+(defun my/org-update-link-description ()
+  "Replace URL at point with org link with fetched title as description."
+  (interactive)
+  (let ((url (thing-at-point 'url)))
+    (when url
+      (delete-region (car (bounds-of-thing-at-point 'url))
+                     (cdr (bounds-of-thing-at-point 'url)))
+      (insert (format "[[%s][%s]]" url (my/org-get-title-from-url url))))))
+(defun my/org-get-title-from-url (url)
+  "Return the title of the page at URL."
+  (with-current-buffer (url-retrieve-synchronously url)
+    (goto-char (point-min))
+    (re-search-forward "<title>\\(.*\\)</title>")
+    (match-string 1)))
+
 (setq display-line-numbers-type 'relative)
 
 ;; Automatic changes to config get saved to separate file instead of this one.
