@@ -197,28 +197,30 @@
 
 ;; TODO: Very low priority, but find out why :exit isn't nil by default
 ;; like it says in the docs.
-;; (use-package! hydra
-;;   :defer
-;;   :config
-;;   (defhydra hydra/evil-window-resize (:color blue)
-;;     "Resize window"
-;;     ("h" evil-window-decrease-width "decrease width" :exit nil)
-;;     ("j" evil-window-decrease-height "decrease height" :exit nil)
-;;     ("k" evil-window-increase-height "increase height" :exit nil)
-;;     ("l" evil-window-increase-width "increase width" :exit nil)
-;;     ("q" nil "quit" :color red))
-;;   (defhydra hydra/evil-window-move (:color blue)
-;;     "Move window"
-;;     ("h" evil-window-move-far-left "move far left" :exit nil)
-;;     ("j" evil-window-move-very-bottom "move very bottom" :exit nil)
-;;     ("k" evil-window-move-very-top "move very top" :exit nil)
-;;     ("l" evil-window-move-far-right "move far right" :exit nil)
-;;     ("q" nil "quit" :color red))
-;;   (map! :leader
-;;     :desc "Resize window"
-;;     :n "w r" #'hydra/evil-window-resize/body
-;;     :desc "Move window"
-;;     :n "w m" #'hydra/evil-window-move/body))
+(use-package! hydra
+  ;; :defer
+  :config
+  ;; (defhydra hydra/evil-window-resize (:color blue)
+  ;;   "Resize window"
+  ;;   ("h" evil-window-decrease-width "decrease width" :exit nil)
+  ;;   ("j" evil-window-decrease-height "decrease height" :exit nil)
+  ;;   ("k" evil-window-increase-height "increase height" :exit nil)
+  ;;   ("l" evil-window-increase-width "increase width" :exit nil)
+  ;;   ("q" nil "quit" :color red))
+  ;; (defhydra hydra/evil-window-move (:color blue)
+  ;;   "Move window"
+  ;;   ("h" evil-window-move-far-left "move far left" :exit nil)
+  ;;   ("j" evil-window-move-very-bottom "move very bottom" :exit nil)
+  ;;   ("k" evil-window-move-very-top "move very top" :exit nil)
+  ;;   ("l" evil-window-move-far-right "move far right" :exit nil)
+  ;;   ("q" nil "quit" :color red))
+  (map! :leader
+    ;; :desc "Resize window"
+    ;; :n "w r" #'hydra/evil-window-resize/body
+    ;; :desc "Move window"
+    ;; :n "w m" #'hydra/evil-window-move/body
+    :desc "Window Navigation"
+    :n "SPC" #'+hydra/window-nav/body))
 
 (turn-on-auto-fill)
 
