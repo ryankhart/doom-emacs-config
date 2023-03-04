@@ -82,18 +82,19 @@
 (setq org-directory             "~/Dropbox/org/")
 (setq org-default-notes-file    "~/Dropbox/org/refile.org")
 (setq org-capture-templates
-      '(("t" "Todo" entry (file "~/Dropbox/org/refile.org")
-         "* TODO %?\n  %i%a\n")
-        ("n" "Note" entry (file "~/Dropbox/org/refile.org")
-         "* %? :NOTE: \n  %i%a\n")))
+  '(("t" "Todo" entry (file "~/Dropbox/org/refile.org")
+      "* TODO %?\n  %i%a\n")
+     ("n" "Note" entry (file "~/Dropbox/org/refile.org")
+       "* %? :NOTE: \n  %i%a\n")))
 
 (defun my/org-update-link-description ()
   "Replace URL at point with org link with fetched title as description."
   (interactive)
   (let ((url (thing-at-point 'url)))
     (when url
-      (delete-region (car (bounds-of-thing-at-point 'url))
-                     (cdr (bounds-of-thing-at-point 'url)))
+      (delete-region
+        (car (bounds-of-thing-at-point 'url))
+        (cdr (bounds-of-thing-at-point 'url)))
       (insert (format "[[%s][%s]]" url (my/org-get-title-from-url url))))))
 (defun my/org-get-title-from-url (url)
   "Return the title of the page at URL."
@@ -133,26 +134,26 @@
   "Scroll up ARG lines but keep point in the same place relative to the window."
   (interactive "p")
   (let ((arg (or ARG 1)))
-      (evil-next-line arg)
-      (scroll-up arg)))
+    (evil-next-line arg)
+    (scroll-up arg)))
 
 (defun my/scroll-left (&optional ARG)
   "Scroll left ARG columns but keep point in the same place relative to the
 window."
   (interactive)
-  (let ((ARG (or ARG 1)))
+  (let ((arg (or ARG 1)))
     (when (> (window-hscroll) 0)
       (progn
-        (evil-backward-char ARG)
-        (scroll-right ARG)))))
+        (evil-backward-char arg)
+        (scroll-right arg)))))
 
 (defun my/scroll-right (&optional ARG)
   "Scroll right ARG columns but keep point in the same place relative to the
 window."
   (interactive)
-  (let ((ARG (or ARG 1)))
-    (and (scroll-left ARG)
-      (evil-forward-char ARG))))
+  (let ((arg (or ARG 1)))
+    (and (scroll-left arg)
+      (evil-forward-char arg))))
 
 (display-time-mode 1)
 (display-battery-mode 1)
@@ -167,23 +168,30 @@ window."
 (map! :desc "Toggle comment line and move down one line"
   :n "s-/" #'my/comment-line-and-move-down)
 
+;; TODO Add format on paste
+
+;; TODO make goto definition open in existing buffer if it's already showing in
+;; a visible window.
+
+;; TODO include TODO comments from anywhere in the current project in my agenda
+
 (use-package! org-pandoc-import :after org)
 
-;; (defun my/insert-date ()
-;;   (interactive)
-;;   (insert (format-time-string "%Y-%m-%d")))
+(defun my/insert-date ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d")))
 
-;; (defun my/insert-time ()
-;;   (interactive)
-;;   (insert (format-time-string "%H:%M")))
+(defun my/insert-time ()
+  (interactive)
+  (insert (format-time-string "%H:%M")))
 
-;; (defun my/insert-date-time ()
-;;   (interactive)
-;;   (insert (format-time-string "%Y-%m-%d %H:%M")))
+(defun my/insert-date-time ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %H:%M")))
 
 (use-package! company
   :config
-  (setq company-idle-delay 2.5))
+  (setq company-idle-delay 2.0))
 
 (use-package! company-box :after company
   :hook (company-mode . company-box-mode))
@@ -195,8 +203,7 @@ window."
   :hook (prog-mode . copilot-mode)
   :hook (text-mode . copilot-mode)
   :hook (org-mode . copilot-mode)
-  :bind* (
-           :map copilot-completion-map
+  :bind* (:map copilot-completion-map
            ("<tab>"      . 'copilot-accept-completion)
            ("TAB"        . 'copilot-accept-completion)
            ("C-g"        . 'copilot-clear-overlay)
@@ -255,9 +262,14 @@ window."
     :desc "Window Navigation"
     :n "SPC" #'+hydra/window-nav/body))
 
-(turn-on-auto-fill)
+;; TODO Make the hydra window nav leave the point where it was and let it go out of
+;; the window.
 
-;; TODO: Make Emacs K search append "emacs" to search query
+;; TODO Make prepending comments that cause the line to be too long
+;; automatically wrap to the next line. between the ;; and the rest of the comment.
+;; Use "g w a c" for "wrap around comment"
+
+(turn-on-auto-fill)
 
 ;; https://emacs.stackexchange.com/questions/47878/how-can-i-disable-a-specific-lint-error-for-emacs-lisp-using-flycheck
 (add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
@@ -279,6 +291,8 @@ window."
 
 ;; TODO: Make flycheck-list-errors switch focus to the error buffer
 
+;; TODO: Make Emacs K search append "emacs" to search query
+
 ;; TODO: Map C-o to winner-undo but only for popup-mode major modes overriding the
 ;; default binding of C-o to better-jumper-jump-backward.
 
@@ -298,19 +312,19 @@ window."
 TODO: Untested as I do not use emacs-mac currently"
   (string-match-p "emacs-mac" (car command-line-args)))
 
-;; (if 'my/using-emacs-plus-p
-;;   (progn
-;;     (message "Using emacs-plus")
-;;     (setq ns-use-native-fullscreen t)
-;;     ;; Retrieves either 'light' or 'dark' from MacOS system preferences
-;;     ;; and sends it as an parameter to my/apply-theme
-;;     (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
-;;     ;; Enable pixel scrolling
-;;     ;; (good-scroll-mode 1)
-;;     )
-;;   ;; Else
-;;   (progn
-;;     (setq doom-theme 'doom-one)))
+(if 'my/using-emacs-plus-p
+  (progn
+    (message "Using emacs-plus")
+    (setq ns-use-native-fullscreen t)
+    ;; Retrieves either 'light' or 'dark' from MacOS system preferences
+    ;; and sends it as an parameter to my/apply-theme
+    (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
+    ;; Enable pixel scrolling
+    ;; (good-scroll-mode 1)
+    )
+  ;; Else
+  (progn
+    (setq doom-theme 'doom-one)))
 
 (if 'my/using-emacs-mac-p
   (progn
@@ -323,72 +337,50 @@ TODO: Untested as I do not use emacs-mac currently"
   ;; Else
   (progn))
 
-;; (defun my/kill-whole-line-safely ()
-;;   "Delete whole line except for unmatched parentheses and put them at the end
-;; of the previous line."
-;;   (interactive)
-;;   (save-excursion
-;;     (beginning-of-line)
-;;     (sp-kill-sexp)
-;;     (delete-indentation)))
+(defun my/kill-whole-line-safely ()
+  "Delete whole line except for unmatched parentheses and put them at the end
+of the previous line."
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (sp-kill-sexp)
+    (delete-indentation)))
 
-;; TODO: Copilot copilot-accept-completion-by-word incorrectly places the cursor
-;; at the end of the copilot overlay instead of at the beginning.
+(defun my/evil-line-or-visual-line ()
+  "Select whole line except for unmatched parentheses and include the line break
+from the end of the previous line."
+  (interactive)
+  (save-excursion
+    ;; (evil-previous-line)
+    ;; (end-of-line)
+    (beginning-of-line)
+    (evil-visual-state 1)
+    (sp-forward-sexp)))
 
-;; (defun my/evil-line-or-visual-line ()
-;;   "Select whole line except for unmatched parentheses and include the line break
-;; from the end of the previous line."
-;;   (interactive)
-;;   (save-excursion
-;;     ;; (evil-previous-line)
-;;     ;; (end-of-line)
-;;     (beginning-of-line)
-;;     (evil-visual-state 1)
-;;     (sp-forward-sexp)))
+(defun my/comment-root-sexp-of-line-safely ()
+  "Comment out the root sexp of the current line until the last closing
+parenthesis of the root sexp."
+  (interactive)
+  (require 'paredit)
+  (save-excursion
+    (beginning-of-line)
+    (mark-sexp)
+    (paredit-comment-dwim)))
 
-;; (use-package! evil
-  ;; :config
-  ;; (advice-add 'evil-line-or-visual-line :override #'my/evil-line-or-visual-line))
-
-;; (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-;; (add-hook 'lisp-mode-hook #'enable-paredit-mode)
-;; (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-
-;; (defun my/comment-root-sexp-of-line-safely ()
-;;   "Comment out the root sexp of the current line until the last closing
-;; parenthesis of the root sexp."
-;;   (interactive)
-;;   (require 'paredit)
-;;   (save-excursion
-;;     (beginning-of-line)
-;;     (mark-sexp)
-;;     (paredit-comment-dwim)))
-
-;; (defun my/open-below-inside-sexp ()
-;;   "Open a new line below the current line but within the current sexp and enter
-;; insert mode."
-;;   (interactive)
-;;   (beginning-of-line)
-;;   (forward-sexp)
-;;   (when (featurep 'paredit)
-;;     (paredit-RET))
-;;   (when (featurep 'evil)
-;;     (evil-insert-state)))
+(defun my/open-below-inside-sexp ()
+  "Open a new line below the current line but within the current sexp and enter
+insert mode."
+  (interactive)
+  (beginning-of-line)
+  (forward-sexp)
+  (when (featurep 'paredit)
+    (paredit-RET))
+  (when (featurep 'evil)
+    (evil-insert-state)))
 
 ;; TODO: Map dd to my/kill-whole-line
 
 ;; TODO: Automatic format-all-buffer
-
-;; Enable +format-on-save-enabled-modes on save for all programming modes
-;; (add-hook 'format-all-mode-hook
-;;   (lambda ()
-;;     (setq +format-on-save-enabled-modes ; TODO: not working
-;;       '(not
-;;          latex-mode
-;;          tex-mode
-;;          sql-mode
-;;          ;; TODO: Troubleshoot copilot indentation not working right here.
-;;          ))))
 
 ;; (add-hook 'flycheck-mode-hook #'my/disable-flycheck-for-emacs-d)
 ;; (defun my/disable-flycheck-for-emacs-d ()
@@ -415,7 +407,7 @@ TODO: Untested as I do not use emacs-mac currently"
 ;;   :type line
 ;;   (my/kill-whole-line-safely))
 
-(global-hi-lock-mode 't)
+(setq global-hi-lock-mode t)
 
 (setq comment-auto-fill-only-comments t)
 
@@ -431,4 +423,4 @@ TODO: Untested as I do not use emacs-mac currently"
 
 (advice-add #'magit-blame-quit
   :after (lambda (&rest _)
-    (message "Exiting magit-blame mode")))
+           (message "Exiting magit-blame mode")))
