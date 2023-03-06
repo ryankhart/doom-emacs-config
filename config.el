@@ -197,9 +197,9 @@ window."
 (use-package! company-box :after company
   :hook (company-mode . company-box-mode))
 
-;; TODO: Make C-g exit company-mode completions before clearing the copilot overlay
-;; or make a keybinding to switch between copilot and company completions. For now,
-;; I'm just setting a delay on company completions.
+;; TODO: Make C-g exit company-mode completions before clearing the copilot
+;; overlay or make a keybinding to switch between copilot and company
+;; completions. For now, I'm just setting a delay on company completions.
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :hook (text-mode . copilot-mode)
@@ -213,7 +213,8 @@ window."
            ("C-n"        . 'copilot-next-completion)
            ("C-p"        . 'copilot-previous-completion)))
 
-;; TODO use add-advice :before to make my custom evil open function work with elisp
+;; TODO use add-advice :before to make my custom evil open function work with
+;; elisp
 
 (use-package! format-all
   :config
@@ -288,12 +289,12 @@ window."
     :desc "Modify Hex Color"
     :n "T m" #'+rgb/kurecolor-hydra/body))
 
-;; TODO Make the hydra window nav leave the point where it was and let it go out of
-;; the window.
+;; TODO Make the hydra window nav leave the point where it was and let it go out
+;; of the window.
 
 ;; TODO Make prepending comments that cause the line to be too long
-;; automatically wrap to the next line. between the ;; and the rest of the comment.
-;; Use "g w a c" for "wrap around comment"
+;; automatically wrap to the next line. between the ;; and the rest of the
+;; comment.  Use "g w a c" for "wrap around comment"
 
 (turn-on-auto-fill)
 
@@ -437,7 +438,8 @@ insert mode."
 
 (setq comment-auto-fill-only-comments t)
 
-;; Disable git style convention checks' overlong summary line warning but keep red font in magit
+;; Disable git style convention checks' overlong summary line warning but keep
+;; red font in magit
 (setq git-commit-style-convention-checks '(non-empty-second-line))
 
 ;; Set which-key max height by percent of screen (default is 1.0)
