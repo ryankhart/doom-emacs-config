@@ -266,20 +266,42 @@ window."
 (use-package! hydra
   ;; :defer
   :config
-  ;; (defhydra hydra/evil-window-resize (:color blue)
-  ;;   "Resize window"
-  ;;   ("h" evil-window-decrease-width "decrease width" :exit nil)
-  ;;   ("j" evil-window-decrease-height "decrease height" :exit nil)
-  ;;   ("k" evil-window-increase-height "increase height" :exit nil)
-  ;;   ("l" evil-window-increase-width "increase width" :exit nil)
-  ;;   ("q" nil "quit" :color red))
-  ;; (defhydra hydra/evil-window-move (:color blue)
-  ;;   "Move window"
-  ;;   ("h" evil-window-move-far-left "move far left" :exit nil)
-  ;;   ("j" evil-window-move-very-bottom "move very bottom" :exit nil)
-  ;;   ("k" evil-window-move-very-top "move very top" :exit nil)
-  ;;   ("l" evil-window-move-far-right "move far right" :exit nil)
-  ;;   ("q" nil "quit" :color red))
+  (defhydra +hydra/window-nav (:hint nil)
+    "
+          Split: _v_ert  _s_:horz
+         Delete: _c_lose  _o_nly
+  Switch Window: _u_:undo  _r_:redo
+        Buffers: _p_revious  _n_ext  _b_:select  _f_ind-file
+         Resize: _H_:left  _J_:down  _K_:up  _L_:right
+           Move: _h_:left  _k_:up  _j_:down  _l_:right  _i_menu
+"
+    ("h" (my/scroll-left 2))
+    ("j" (my/scroll-down-line 1))
+    ("k" (my/scroll-up-line 1))
+    ("l" (my/scroll-right 2))
+    ("i" idomenu)
+
+    ("u" winner-undo)
+    ("r" winner-redo)
+
+    ("p" previous-buffer)
+    ("n" next-buffer)
+    ("b" switch-to-buffer)
+    ("f" find-file)
+
+    ("s" split-window-below)
+    ("v" split-window-right)
+
+    ("c" delete-window)
+    ("o" delete-other-windows)
+
+    ("H" (hydra-move-splitter-left 2))
+    ("J" hydra-move-splitter-down)
+    ("K" hydra-move-splitter-up)
+    ("L" (hydra-move-splitter-right 2))
+
+    ("q" nil))
+
   (map! :leader
     ;; :desc "Resize window"
     ;; :n "w r" #'hydra/evil-window-resize/body
