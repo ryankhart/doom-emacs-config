@@ -63,6 +63,7 @@
   :prefix ("m e" . "eval")
   :prefix ("m d" . "debug")
   :prefix ("m g" . "goto")
+  :prefix ("T" . "tools")
   )
 
 (map!
@@ -283,7 +284,9 @@ window."
     ;; :desc "Move window"
     ;; :n "w m" #'hydra/evil-window-move/body
     :desc "Window Navigation"
-    :n "SPC" #'+hydra/window-nav/body))
+    :n "SPC" #'+hydra/window-nav/body
+    :desc "Modify Hex Color"
+    :n "T m" #'+rgb/kurecolor-hydra/body))
 
 ;; TODO Make the hydra window nav leave the point where it was and let it go out of
 ;; the window.
