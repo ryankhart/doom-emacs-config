@@ -321,26 +321,6 @@ window."
 
 (turn-on-auto-fill)
 
-;; https://emacs.stackexchange.com/questions/47878/how-can-i-disable-a-specific-lint-error-for-emacs-lisp-using-flycheck
-(add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
-(defun elisp-noflycheck-hook ()
-  "Add the ;;;###noflycheck thing to elisp."
-  (require 'flycheck)
-  (add-hook 'flycheck-process-error-functions #'flycheck-elisp-noflycheck nil t))
-(defun flycheck-elisp-noflycheck (err)
-  "Ignore flycheck if line of ERR ends with (flycheck-elisp-noflycheck-marker)."
-  (save-excursion
-    (goto-char (cdr (flycheck-error-region-for-mode err 'symbols)))
-    (looking-back flycheck-elisp-noflycheck-marker
-      (max (- (point) (length flycheck-elisp-noflycheck-marker))
-        (point-min)))))
-(defcustom flycheck-elisp-noflycheck-marker ";noflycheck"
-  "Flycheck line regions marked with this comment are ignored."
-  :type 'string
-  :group 'flycheck)
-
-;; TODO: Make flycheck-list-errors switch focus to the error buffer
-
 ;; TODO: Make Emacs K search append "emacs" to search query
 
 ;; TODO: Map C-o to winner-undo but only for popup-mode major modes overriding the
@@ -432,12 +412,6 @@ insert mode."
 
 ;; TODO: Automatic format-all-buffer
 
-;; (add-hook 'flycheck-mode-hook #'my/disable-flycheck-for-emacs-d)
-;; (defun my/disable-flycheck-for-emacs-d ()
-;;   "Disable flycheck for files in ~/.emacs.d."
-;;   (when (string-match-p "/Users/ryan/.emacs.d/" (buffer-file-name))
-;;     (flycheck-mode nil)))
-
 ;; TODO: Make Copilot keep the cursor at the beginning of the overlay
 
 ;; TODO: https://discourse.doomemacs.org/t/flymake-for-private-config/3515
@@ -475,3 +449,32 @@ insert mode."
 (advice-add #'magit-blame-quit
   :after (lambda (&rest _)
            (message "Exiting magit-blame mode")))
+
+(use-package! flycheck
+  :defer t
+  :config
+  (setq flycheck-mode nil)
+  (setq flycheck-check-syntax-automatically '(save idle-change))
+
+  (add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
+  (defun elisp-noflycheck-hook ()
+    "Add the ;;;###noflycheck thing to elisp.
+https://emacs.stackexchange.com/questions/47878"
+    (require 'flycheck)
+    (add-hook 'flycheck-process-error-functions #'flycheck-elisp-noflycheck nil t))
+  (defun flycheck-elisp-noflycheck (err)
+    "Ignore flycheck if line of ERR ends with (flycheck-elisp-noflycheck-marker).
+https://emacs.stackexchange.com/questions/47878"
+    (save-excursion
+      (goto-char (cdr (flycheck-error-region-for-mode err 'symbols)))
+      (looking-back flycheck-elisp-noflycheck-marker
+        (max (- (point) (length flycheck-elisp-noflycheck-marker))
+          (point-min)))))
+  (defcustom flycheck-elisp-noflycheck-marker ";noflycheck"
+    "Flycheck line regions marked with this comment are ignored.
+https://emacs.stackexchange.com/questions/47878"
+    :type 'string
+    :group 'flycheck)
+
+  ;; TODO: Make flycheck-list-errors switch focus to the error buffer
+  )
