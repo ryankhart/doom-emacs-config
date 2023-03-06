@@ -43,6 +43,7 @@
   :n "w <down>" nil
   :n "s B" nil
   :n "b l" nil
+  :n "X" nil
   )
 
 (map!
