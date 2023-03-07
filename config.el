@@ -486,7 +486,7 @@ insert mode."
   (setq flycheck-mode nil)
   (setq flycheck-check-syntax-automatically '(save idle-change))
 
-  (add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
+  ;; (add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
   (defun elisp-noflycheck-hook ()
     "Add the ;;;###noflycheck thing to elisp.
 https://emacs.stackexchange.com/questions/47878"
