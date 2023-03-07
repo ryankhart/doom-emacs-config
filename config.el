@@ -485,27 +485,5 @@ insert mode."
   :config
   (setq flycheck-mode nil)
   (setq flycheck-check-syntax-automatically '(save idle-change))
-
-  ;; (add-hook 'emacs-lisp-mode-hook #'elisp-noflycheck-hook)
-  (defun elisp-noflycheck-hook ()
-    "Add the ;;;###noflycheck thing to elisp.
-https://emacs.stackexchange.com/questions/47878"
-    (require 'flycheck)
-    (add-hook 'flycheck-process-error-functions
-      #'flycheck-elisp-noflycheck nil t))
-  (defun flycheck-elisp-noflycheck (err)
-    "Ignore flycheck if line of ERR ends with (flycheck-elisp-noflycheck-marker).
-https://emacs.stackexchange.com/questions/47878"
-    (save-excursion
-      (goto-char (cdr (flycheck-error-region-for-mode err 'symbols)))
-      (looking-back flycheck-elisp-noflycheck-marker
-        (max (- (point) (length flycheck-elisp-noflycheck-marker))
-          (point-min)))))
-  (defcustom flycheck-elisp-noflycheck-marker ";noflycheck"
-    "Flycheck line regions marked with this comment are ignored.
-https://emacs.stackexchange.com/questions/47878"
-    :type 'string
-    :group 'flycheck)
-
   ;; TODO: Make flycheck-list-errors switch focus to the error buffer
   )
