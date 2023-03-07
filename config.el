@@ -491,7 +491,8 @@ insert mode."
     "Add the ;;;###noflycheck thing to elisp.
 https://emacs.stackexchange.com/questions/47878"
     (require 'flycheck)
-    (add-hook 'flycheck-process-error-functions #'flycheck-elisp-noflycheck nil t))
+    (add-hook 'flycheck-process-error-functions
+      #'flycheck-elisp-noflycheck nil t))
   (defun flycheck-elisp-noflycheck (err)
     "Ignore flycheck if line of ERR ends with (flycheck-elisp-noflycheck-marker).
 https://emacs.stackexchange.com/questions/47878"
