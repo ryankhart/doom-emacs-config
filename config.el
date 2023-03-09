@@ -23,6 +23,10 @@
   '(font-lock-comment-face :slant italic :foreground "#848d94")
   '(font-lock-doc-face :slant italic :foreground "#848d94"))
 
+(use-package! rainbow-mode
+  :hook
+  (prog-mode . rainbow-mode)
+  (org-mode . rainbow-mode))
 
 (map!
   :leader
