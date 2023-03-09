@@ -499,4 +499,12 @@ insert mode."
 ;; "You can run the command ‘count-words’ with g C-g"
 (setq suggest-key-bindings nil)
 
+(advice-add #'evil-window-split
+  :after #'prompt-for-buffer-in-other-window)
+(advice-add #'evil-window-vsplit
+  :after #'prompt-for-buffer-in-other-window)
+(defun prompt-for-buffer-in-other-window ()
+  (other-window 1)
+  (call-interactively #'consult-buffer))
+
   )
