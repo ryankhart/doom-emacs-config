@@ -14,7 +14,8 @@
 (setq tab-width 2)
 (setq lisp-indent-offset 2)
 
-(setq doom-font (font-spec :family "Monaco" :size 20))
+(setq doom-font (font-spec :family "Monaco" :size 19))
+(setq doom-font-increment 1)
 
 ;; Brighten the comments font color and set background to unspecified
 ;; https://www.w3schools.com/colors/colors_picker.asp
