@@ -493,4 +493,10 @@ insert mode."
   (setq evil-respect-visual-line-mode t)
   (map! :n "j" #'evil-next-visual-line
     :n "k" #'evil-previous-visual-line))
+
+;; Stop messages like these from appearing in the echo area when I run a
+;; command. I already can see the keymap from the M-x menu.
+;; "You can run the command ‘count-words’ with g C-g"
+(setq suggest-key-bindings nil)
+
   )
