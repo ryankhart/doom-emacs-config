@@ -507,4 +507,6 @@ insert mode."
   (other-window 1)
   (call-interactively #'consult-buffer))
 
-  )
+(map!
+  :n "s-j" #'evil-scroll-down
+  :n "s-k" #'evil-scroll-up)
