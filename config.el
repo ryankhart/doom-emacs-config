@@ -487,4 +487,10 @@ insert mode."
   (setq flycheck-mode nil)
   (setq flycheck-check-syntax-automatically '(save idle-change))
   ;; TODO: Make flycheck-list-errors switch focus to the error buffer
+
+(use-package! evil
+  :init
+  (setq evil-respect-visual-line-mode t)
+  (map! :n "j" #'evil-next-visual-line
+    :n "k" #'evil-previous-visual-line))
   )
