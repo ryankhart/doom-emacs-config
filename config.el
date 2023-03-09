@@ -507,9 +507,19 @@ insert mode."
   :after #'prompt-for-buffer-in-other-window)
 (advice-add #'evil-window-vsplit
   :after #'prompt-for-buffer-in-other-window)
-(defun prompt-for-buffer-in-other-window ()
-  (other-window 1)
-  (call-interactively #'consult-buffer))
+
+(defun prompt-for-buffer-in-other-window (&rest _)
+  "Prompt for a buffer to open in the other window.
+
+If the user cancels the prompt, the other window is deleted."
+  (let ((prev-win (selected-window)))
+    (other-window 1)
+    (condition-case nil
+      (call-interactively #'consult-buffer)
+      (quit
+        (delete-window)
+        (message "Cancelled opening buffer in other window")))
+    (select-window prev-win)))
 
 (map!
   :n "s-j" #'evil-scroll-down
