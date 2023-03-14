@@ -508,6 +508,17 @@ insert mode."
 ;; "You can run the command ‘count-words’ with g C-g"
 (setq suggest-key-bindings nil)
 
+;; (defadvice! doom--warn-on-unsaved-buffers-a (orig-fn &rest _)
+;;   "Warn me if I try to quit emacs with buffers that have yet to be saved ever."
+;;   :before #'doom-quit-p
+;;   (when (my/buffers-with-no-file-to-save-to-p)
+;;     (user-error "Aborting: There are unsaved buffers that cannot be autosaved")))
+(defun my/buffers-with-no-file-to-save-to-p ()
+  "Return non-nil if there are unsaved buffers do not have a file to save to."
+  (cl-loop for buf in (buffer-list)
+    if (and (buffer-modified-p buf)
+         (not (buffer-file-name buf)))
+    return t))
 ;; TODO Fix bug where it doesnt let me quit emacs on the home screen
 
 (advice-add #'evil-window-split
