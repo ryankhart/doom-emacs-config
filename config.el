@@ -241,9 +241,6 @@ window."
     :after #'yank
     (run-hooks 'yank-hook)))
 
-(use-package! aggressive-indent
-  :hook (prog-mode . aggressive-indent-mode))
-
 (use-package! iedit
   :defer
   :config
