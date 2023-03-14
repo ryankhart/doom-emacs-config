@@ -463,12 +463,12 @@ insert mode."
             (this-win-edges (window-edges (selected-window)))
             (next-win-edges (window-edges (next-window)))
             (this-win-2nd (not (and (<= (car this-win-edges)
-                                      (car next-win-edges))
-                                 (<= (cadr this-win-edges)
-                                   (cadr next-win-edges)))))
+                                        (car next-win-edges))
+                                    (<= (cadr this-win-edges)
+                                        (cadr next-win-edges)))))
             (splitter
               (if (= (car this-win-edges)
-                    (car (window-edges (next-window))))
+                     (car (window-edges (next-window))))
                 'split-window-horizontally
                 'split-window-vertically)))
       (delete-other-windows)
