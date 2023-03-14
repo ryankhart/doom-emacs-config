@@ -351,23 +351,25 @@ TODO: Untested as I do not use emacs-mac currently"
     ;; Retrieves either 'light' or 'dark' from MacOS system preferences
     ;; and sends it as an parameter to my/apply-theme
     (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
-    ;; Enable pixel scrolling
     ;; (good-scroll-mode 1)
     )
   ;; Else
   (progn
     (setq doom-theme 'doom-one)))
 
-(if 'my/using-emacs-mac-p
+;; Write a regex to match all Elisp docstrings in a buffer
+(defun my/replace-elisp-docstrings (replacement)
+  "Replace all Elisp docstrings in the current buffer with REPLACEMENT."
+  (interactive "sReplacement: ")
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "^\\s-*\"\"\"\\(.*\\)\"\"\"" nil t)
+      (replace-match replacement))))
+
+(when 'my/using-emacs-mac-p
   (progn
     (message "Using emacs-mac")
-    ;; Enable pixel scrolling
-    (setq mac-mouse-wheel-smooth-scroll 't)
-    ;; Retrieves either 'light' or 'dark' from MacOS system preferences
-    ;; and sends it as an parameter to my/apply-theme
-    )
-  ;; Else
-  (progn))
+    (setq mac-mouse-wheel-smooth-scroll 't)))
 
 (defun my/kill-whole-line-safely ()
   "Delete whole line except for unmatched parentheses and put them at the end
