@@ -492,6 +492,12 @@ insert mode."
   (setq flycheck-check-syntax-automatically '(save idle-change))
   ;; TODO: Make flycheck-list-errors switch focus to the error buffer
 
+;; https://google.com
+(use-package! w3m
+  :init
+  (setq browse-url-browser-function 'w3m-browse-url)
+  )
+
 (use-package! evil
   :init
   (setq evil-respect-visual-line-mode t)

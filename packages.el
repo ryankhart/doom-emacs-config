@@ -78,10 +78,10 @@
 ;; (package! command-log-mode
 ;;   :recipe (:host github :repo "lewang/command-log-mode"))
 
-;; (package! dash-at-point)
-
 ;; (package! paredit
 ;;   :recipe (:host github :repo "emacsmirror/paredit"))
 
 ;; (package! good-scroll
 ;;   :recipe (:host github :repo "io12/good-scroll.el"))
+
+(package! w3m)
