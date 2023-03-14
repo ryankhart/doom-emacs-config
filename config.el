@@ -489,7 +489,11 @@ insert mode."
   :config
   (setq flycheck-mode nil)
   (setq flycheck-check-syntax-automatically '(save idle-change))
-  ;; TODO: Make flycheck-list-errors switch focus to the error buffer
+  ;; When flycheck-list-errors is called move cursor to the first error
+  (advice-add #'flycheck-list-errors
+    :after (lambda (&rest _)
+             (flycheck-first-error))))
+
 
 ;; https://google.com
 (use-package! w3m
