@@ -494,6 +494,14 @@ insert mode."
     :after (lambda (&rest _)
              (flycheck-first-error))))
 
+(use-package! markdown-mode
+  :defer t
+  ;; Make `markdown-live-preview-mode' open in a vertical split
+  :config
+  ;; TODO unknown if this is working or not
+  (defadvice! markdown-live-preview-mode--open-in-vertical-split (_ &rest _)
+    :after #'markdown-live-preview-mode
+    (my/toggle-window-split-direction)))
 
 ;; https://google.com
 (use-package! w3m
