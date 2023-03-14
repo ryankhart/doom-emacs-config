@@ -69,8 +69,8 @@
 
 (package! iedit)
 
-(package! aggressive-indent-mode
-  :recipe (:host github :repo "Malabarba/aggressive-indent-mode"))
+;; (package! aggressive-indent-mode
+;;   :recipe (:host github :repo "Malabarba/aggressive-indent-mode"))
 
 ;; (package! keycast
 ;;   :recipe (:host github :repo "tarsius/keycast"))
