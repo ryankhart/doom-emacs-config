@@ -508,6 +508,8 @@ insert mode."
 ;; "You can run the command ‘count-words’ with g C-g"
 (setq suggest-key-bindings nil)
 
+;; TODO Fix bug where it doesnt let me quit emacs on the home screen
+
 (advice-add #'evil-window-split
   :after #'prompt-for-buffer-in-other-window)
 (advice-add #'evil-window-vsplit
@@ -523,3 +525,7 @@ If the user cancels the prompt, the other window is deleted."
 (map!
   :n "s-j" #'evil-scroll-down
   :n "s-k" #'evil-scroll-up)
+
+;; TODO Replace all setq with setq!
+
+;; TODO Make auto intenting work when closing a parenthesis
