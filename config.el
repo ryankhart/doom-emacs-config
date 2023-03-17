@@ -325,9 +325,6 @@ window."
 
 ;; TODO: Make Emacs K search append "emacs" to search query
 
-;; TODO: Map C-o to winner-undo but only for popup-mode major modes overriding
-;; the default binding of C-o to better-jumper-jump-backward.
-
 (defun my/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
