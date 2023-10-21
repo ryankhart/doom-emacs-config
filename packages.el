@@ -81,7 +81,13 @@
 ;; (package! paredit
 ;;   :recipe (:host github :repo "emacsmirror/paredit"))
 
-;; (package! good-scroll
-;;   :recipe (:host github :repo "io12/good-scroll.el"))
-
 (package! w3m)
+
+(package! org-ai
+  :recipe (:host github :repo "rksm/org-ai"))
+
+(package! scroll-restore
+  :recipe (:host github :repo "emacsmirror/scroll-restore"))
+
+(package! bag
+  :recipe (:host github :repo "vrind-nl/bag.el"))
